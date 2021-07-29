@@ -1,0 +1,65 @@
+<html>
+<title>java get/set</title>
+<body bgcolor="orange" text="black">
+<h1>使用set/get方法的意義和用法</h1>
+經常看到有朋友提到類似:對類中的屬性使用set/get方法的作用?理論的回答當然是封閉<br>
+性之類的,但是這樣對我們有什麼作用呢?為什麼要這樣設計?我直接使用屬性名來訪問<br>
+不是更直接,程式碼更簡潔明瞭嗎?下面我們就來介紹下為什麼要使用set/get方法來代替<br>
+直接訪問屬性。<br>
+
+<h3>1.靈活性</h3>
+比如我們有一個Person類,我們給它設定一個屬性name,但是我們希望在取名字的時候,<br>
+不是隻顯示名字,而是把名字按我們的要求輸出,比如”我的名字叫XX”,程式碼如下:<br>
+<br>
+<h2>source codes:</h2>
+<pre>
+<ol>
+<l1>import java.util.Scanner;<br>
+<l2>public class Person {<br>
+<l3>&#9;private String name;<br><br>
+<l4>&#9;public String getName() {<br>
+<l5>&#9;&#9;return "我的名字叫" + name;<br>
+<l6>&#9;}<br><br>
+<l7>&#9;public void setName(String name) {<br>
+<l8>&#9;&#9;this.name = name;<br>
+<l9>&#9;}<br>
+<l10>}<br>
+</ol>
+</pre>
+如上程式碼,以後我們只要定義一個person物件,並給他setName(xx),再getName的時候,<br>
+就會顯示我的名字叫XX。在實際業務中還可以有更靈活的運用,這裡就不舉例了。<br>
+
+2.安全性。
+比如我們的作業系統在新建使用者或在共享檔案的時候,經常會提示對針對某個使用者<br>
+的許可權是什麼,是隻讀還是隻寫還是可讀寫,這裡的讀寫就好比get/set。對於類來說,如<br>
+果不使用set/get方法,直接用public定義某個屬性,那麼這個屬性是可讀可寫的,如果你希<br>
+望一個類的某個屬性是隻能讀取,不能寫入的時候,上面用public定義某個屬性就不能滿足<br>
+了,但是我們可以使用private定義屬性,再定義一個get方法,但是不定義set方法來實現。<br>
+反之,只定義set,不定義get則表示該屬性是隻寫不能讀的。舉個例子,如下程式碼。<br>
+<h2>source codes:</h2>
+<pre>
+<ol>
+<l1>public class Circle {<br>
+<l2>&#9;private double radius;<br><br>
+<l3>&#9;private double pai = 3.14;<br><br>
+<l4>&#9;public double getPai() {<br>
+<l5>&#9;&#9;return pai;<br>
+<l6>&#9;}<br><br>
+<l7>&#9;public void setRadius(double radius) {<br>
+<l8>&#9;&#9;this.radius = radius;<br>
+<l9>&#9;}<br><br>
+<l10>&#9;public double getC() {<br>
+<l11>&#9;&#9;return 2*pai*radius;<br>
+<l12>&#9;}<br>
+<l13>}<br>
+</ol>
+</pre>
+我們定義了一個圓類,定義了屬性半徑和pai,半徑我只提供寫的方法,但是不提供讀,而pai<br>
+只提供讀,但不能寫,並提供了一個計算周長的方法getC。在實際專案中,對一些類的設計<br>
+時,嚴謹的設計是要考慮哪些類是隻讀或是隻寫的。<br><br>
+
+set/get的方法作用當然不只這些,實際專案中的用法有很多,比如對某個類升級,有一個屬<br>
+性的Type變化了,只要set/get的Type不變就不會影響到以前的程式碼。更多的用法只能<br>
+在使用中多體會了。
+</body>
+</html>
