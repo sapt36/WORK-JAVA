@@ -25,7 +25,7 @@ class Node
 	}
 }
 
-class Main
+class HuffmanCoding
 {
 	// Traverse the Huffman Tree and store Huffman Codes in a map.
 	public static void encode(Node root, String str,
@@ -156,7 +156,7 @@ class Main
 	// Huffman coding algorithm implementation in Java
 	public static void main(String[] args)
 	{
-    System.out.println("Please enter what you want to coding");
+    		System.out.println("Please enter what you want to coding");
 		Scanner input=new Scanner(System.in);
 		String b=input.nextLine();
 		buildHuffmanTree(b);
